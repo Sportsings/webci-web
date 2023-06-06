@@ -1,0 +1,57 @@
+body {
+    font-size: 18pt;
+}
+
+.head {
+  
+  border-width: 20px;
+  background-color: #333;
+  border-radius: 56px;
+  color: #FFF;
+  
+}
+
+.enlaces a {
+  
+  color: #333;
+  opacity: 70%;
+  padding-right: 30px;
+  
+}
+
+.list li {
+  
+  color: #FFF;
+  
+}
+
+.des p{
+  color: #333;
+  opacity: 50%;
+}
+
+.des h2{
+  
+  border-width: 20px;
+  background-color: #333;
+  border-radius: 56px;
+  color: #FFF;
+  
+}
+
+.des h3 {
+
+  border-width: 20px;
+  background-color: #333;
+  border-radius: 5px;
+  color: #FFF;
+
+}
+
+.data {
+  
+  background-color: #8e8e8e;
+  border-radius: 6px;
+  color: #333;
+  
+}
