@@ -1,57 +1,66 @@
-body {
-    font-size: 18pt;
+/* Estilos para el encabezado */
+header {
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+header img {
+  max-width: 200px;
 }
 
 .head {
-  
-  border-width: 20px;
-  background-color: #333;
-  border-radius: 56px;
-  color: #FFF;
-  
+  margin-top: 20px;
 }
 
-.enlaces a {
-  
+.head h1 {
   color: #333;
-  opacity: 70%;
-  padding-right: 30px;
-  
+  font-size: 24px;
 }
 
-.list li {
-  
-  color: #FFF;
-  
+/* Estilos para los enlaces */
+.enlaces {
+  margin-top: 20px;
 }
 
-.des p{
+.list ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.list ul li {
+  display: inline;
+  margin-right: 10px;
+}
+
+.list ul li a {
+  text-decoration: none;
   color: #333;
-  opacity: 50%;
+  font-weight: bold;
 }
 
-.des h2{
-  
-  border-width: 20px;
-  background-color: #333;
-  border-radius: 56px;
-  color: #FFF;
-  
+/* Estilos para el contenido */
+.des {
+  margin-top: 20px;
 }
 
-.des h3 {
-
-  border-width: 20px;
-  background-color: #333;
-  border-radius: 5px;
-  color: #FFF;
-
+.des h2 {
+  color: #333;
+  font-size: 20px;
 }
 
+.des p {
+  color: #666;
+  line-height: 1.5;
+}
+
+#parrafo {
+  font-style: italic;
+}
+
+/* Estilos para el pie de página */
 .data {
-  
-  background-color: #8e8e8e;
-  border-radius: 6px;
-  color: #333;
-  
+  background-color: #f2f2f2;
+  padding: 10px;
+  text-align: center;
+  color: #666;
 }
