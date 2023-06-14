@@ -2,53 +2,73 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="style.css">
-  <title>Webci | documentación</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Webci | documentaciòn</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.menu {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.menu ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu li {
+  display: inline-block;
+  margin: 0 10px;
+  padding: 10px;
+  background-color: #f2f2f2;
+  cursor: pointer;
+}
+
+.informacion {
+  margin-top: 20px;
+  display: none;
+}
+  </style>
 </head>
 <body>
   <div class="head">
     <center><h1>Documentación</h1></center>
   </div>
   <div class="des">
-    <center><h3>Crear servidores</h3></center>
     <center>
       <p id="parrafo">
-        Con webci se facilita o se intenta de facilitar la creacion de los mismos, hay una struct llamada <b>struct Server</b> que es una estructura para crear los servidores webs cuyos datos son:
-           <li>int server_fd</li>
-           <li>int new_socket</li>
-           <li>int valread</li>
-           <li>int client_socket</li>
-           <li>struct sockaddr_in address</li>
-           <li>struct sockaddr_in client_address</li>
-           <li>socklen_t client_address_length</li>
-           <li>int opt</li>
-           <li>int addrlen</li>
-           <li>int error</li>
-           <li>int port</li>
-           <li>int buffer_size</li>
-        <p id="parrafo">
-          La estructura se declara así
-        </p>
-        <span>
-          struct Server servidor;
-        </span>
-        <p id="parrafo">
-          La estructura siempre sera global siempre cuando se quiere crear un servidor que trabaje con varias paginas html de lo contrario no es necesario.
-          la forma de trabajar con esta estructura es simple en la función main() se escribe lo siguiente:
-          <br>
-        </p>
-        <span>
-          servidor.port = 8090;
-          servidor.buffer_size = 4024;
-          start_server_file(&servidor);
-        </span>
-        <p id="parrafo">
-          la función <b>start_server_file()</b> se encargara de inizializar los otros datos necesarios y solo recive como parametro una variable de la estructura Server. La función  <b>listen_server_file()</b>
-          es la encargada escuchar solicitudes de usuarios entrantes recive dos parametros: una variable de la struct Server y otra que es la pagina html a enviar siempre se crea un bucle while(WEB_TRUE) o while(1) donde vaya la función <b>listen_server_file()</b> cuyo segundo parametro sera la pagina inicio es decir: index.html
-        </p>
+        Aquí encontraras toda la documentación sobre el uso de la libreria webci que esta aun en desarrollo. Esta documentacion se actualizara mientra se agrgen, cambien o elimine cosas.
       </p>
     </center>
-    </div>
+  </div>
+  <header>
+  <div class="menu">
+    <lo class="List">
+    <ul>
+      <li onclick="mostrarInformacion('structServer')">La estructura Server</li>
+      <li onclick="mostrarInformacion('otrasFunciones')">Otras funciones para enviar respuestas html</li>
+      <li onclick="mostrarInformacion('funcionesGet')">Funciòn get_response() y otras funciones</li>
+      <li onclick="mostrarInformacion('plataform')">Funciòn get_platform()</li>
+      <li onclick="mostrarInformacion('emails')">Funcion send_email() y struct smtp_email</li>
+      <li onclick="mostrarInformacion('macros')">Macros màs usadas</li>
+    </ul>
+    </lo>
+  </div>
+  </header>
+  <div id="informacion" class="informacion">
+  </div>
+  <script src="docs.js"></script>
+    <footer class="data">Ùltima actualización: 2023-06-13</footer>
 </body>
 </html>
