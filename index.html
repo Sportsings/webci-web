@@ -1,46 +1,121 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" href="favicon.png">
-<meta name="description" content="Webci es una libreria para crear servidores webs y usar C para enviar paginas html y tener mas control de las respuestas enviadas(o solicitudes) de un sitio web y enviar respuestas de acorde a ello ">
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" href="style.css">
+  <title>Webci | home</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: #fff;
+      margin: 0;
+      padding: 20px;
+    }
 
-  <title>Webci | Home</title>
-  <!-- Custom Styles -->
-  <link rel="stylesheet" href="style.css">
+    h1, h2 {
+      color: #fff;
+    }
+
+    code {
+  display: block;
+  background-color: #f1f1f1;
+  padding: 0px;
+  margin-bottom: 20px;
+  font-family: monospace;
+  white-space: pre-wrap;
+  color: #333;
+  border-radius: 5px;
+}
+  </style>
 </head>
 <body>
-  <header>
-    <div class="head">
-      <img src="favicon.png" alt="Logo">
-       <center><h1>Webci</h1></center>
-    </div>
-    <div class="enlaces">
-      <lo class="list">
-        <center>
-        <ul>
-          <li><a href="docs.html">Documentación</a></li>
-          <li><a href="https://github.com/tronicStart/webci-h/actions">Descargar(github)</a></li>
-          <li><a href="downloads.html">Descargar</a></li>
-          <li><a href="https://discord.gg/dxNyrrhWCK">Discord</a></li>
-          <li><a href="new.html">Novedades(desarrollo)</a></li>
-          <li><a href="about.html">Sobre webci</a></li>
-          <li><a href="index.html">Ejecutar</a></li>
-        </ul>
-        </center>
-      </lo>
-    </div>
-  </header>
-  <div class="des">
-    <center><h2>¿Qué es webci?</h2></center>
-    <center>
-      <p>Webci es una libreria para crear servidores webs y usar C para enviar paginas html y tener mas control de las respuestas enviadas(o solicitudes) de un sitio web y enviar respuestas de acorde a ello.</p>
+  <center><h1>Webci</h1></center>
+   <div class="enlaces">
+     <lo class="list">
+       <center>
+         <ul>
+           <li><a href="docs.html">Documentación</a></li>
+           <li><a href="https://github.com/tronicStart/webci-h">Github</a></li>
+           <li><a href="https://discord.gg/dxNyrrhWCK">Discord</a></li>
+           <li><a href="new.html">Cambios importantes</a></li>
+           <li><a href="about.html">Sobre webci</a></li>
+         </ul>
+       </center>
+     </lo>
+   </div>
+       <center>
+      <p>Webci es una libreria para crear servidores webs y usar C para enviar y crear paginas html y tener mas control de las respuestas enviadas(o solicitudes) de un sitio web y enviar respuestas de acorde a ello. <p id="parrafo">Aún en desarrollo</p></p>
     </center>
-  </div>
-  
-  <footer class="data">Ultima actualización: 2023-06-06</footer>
-  <script src="main.js"></script>
+    
+  <h2>Con webci se puede crear paginas html</h2>
+  <code><pre>
+#include &lt;webci.h&gt;
+#include &lt;sqlite3.h&gt;
+#include &lt;curl/curl.h&gt;
+
+int main (){
+    
+    struct Server server;
+    html html;
+    
+    server.port = 8080;
+    server.buffer_file = 4096;
+    open_server(&server);
+    
+    ini_html(&html);
+    html.title("Page");
+    html.html_o("lang=\"es\"");
+    html.head_o(NULL);
+    html.meta("charset=\"UTF-8\"");
+    html.meta("http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"");
+    html.head_c();
+    html.body_o(NULL);
+    html.h1(NULL,"Hola, mundo");
+    html.body_c();
+    html.html_c();
+    
+    html.send(&server,JS_ERRORS_OFF);
+    
+    return 0;
+}</pre>
+  </code>
+  <center>
+      <p>Lo que hace este codigo es usar la estructura <b>html</b> y la estructura <b>Server</b> para crear una pagina html y un servidor web. cada elemento html se lo llama desde la estructura <b>html</b> que realmente son funciones, algunas funciones o elementos html estan divididos en dos funciones siempre inician por el nombre del elemento seguido de un _o que es de open y la función de cierre es igual que lo anterior pero con la diferencia de que es _c de close para enviar la pagina html creada se usa la función <b>html.send(estructura Server,macro para mostrar posibles errorres js);</b></p>
+    </center>
+  <h2>Se pueden crear servidores webs</h2>
+  <code>
+    <pre>
+#include &lt;webci.h&gt;
+#include &lt;sqlite3.h&gt;
+#include &lt;curl/curl.h&gt;
+
+int main (){
+    
+    struct Server server;
+    
+    server.port = 8080;
+    server.buffer_file = 4024;
+    open_server(&server);
+    
+    while(WEB_TRUE){
+        send_response_server(&server,"index.html");
+        printf("%s",get_response());
+    }
+    
+    return 0;
+}
+    </pre>
+  </code>
+  <center><p>
+    En este codigo se utiliza la estructura <b>Server</b> la cual permite crear servidores webs de una forma mas sencilla, antes de abrir el servidor o de se hacen dos declaraciones previas las cuales son el <b>.port</b> y <b>.buffer_file</b> se crea un bucle principal que escuchara las solicitudes y enviara la pagina usando la funciòn <b>send_response_server(estructura server, nombre del archivo html);</b> y finalmente se usa la funciòn <b>get_response()</b> para ver la respuesta en la terminal recivida del navegador.
+  </p></center>
+  <center>
+  <footer>
+    Webci 2023
+  </footer>
+  </center>
 </body>
 </html>
